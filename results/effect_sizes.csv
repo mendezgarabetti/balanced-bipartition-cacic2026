@@ -1,0 +1,6 @@
+Dataset,Mode,n_Proposed,n_GA,Vargha_Delaney_A,Wilcoxon_p,Wilcoxon_n_pairs
+HCV,full,30,30,1.0,,
+HCV,sub300,10,5,1.0,0.0625,5.0
+Iris,full,30,10,1.0,,
+Synthetic,full,30,30,1.0,,
+Synthetic,sub300,10,5,1.0,0.0625,5.0

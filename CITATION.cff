@@ -1,0 +1,54 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+type: software
+title: "Reproducibility package: How Close to Optimal? Benchmarking a Hybrid Heuristic for Balanced Bipartition with Positional Correspondence"
+abstract: >-
+  Code, data and raw per-run results behind every table and figure in the
+  CACIC 2026 paper on balanced bipartition with positional correspondence,
+  including the exact optimum baseline via Edmonds' Blossom algorithm.
+license: MIT
+version: 1.0.0
+date-released: "2026-09-23"
+repository-code: "https://github.com/mendezgarabetti/balanced-bipartition-cacic2026"
+keywords:
+  - anticlustering
+  - balanced partitioning
+  - positional matching
+  - minimum-weight matching
+  - genetic algorithm
+  - combinatorial optimization
+authors:
+  - family-names: "Méndez-Garabetti"
+    given-names: "Miguel"
+    orcid: "https://orcid.org/0000-0003-0809-8965"
+    affiliation: "Universidad Nacional de Cuyo, Mendoza, Argentina"
+  - family-names: "Ruiz-Olazar"
+    given-names: "Margarita"
+    orcid: "https://orcid.org/0000-0002-1917-7696"
+    affiliation: "Universidad Comunera, Asunción, Paraguay"
+  - family-names: "Ihara"
+    given-names: "Diego"
+    orcid: "https://orcid.org/0000-0002-8468-0845"
+    affiliation: "Universidad Comunera, Asunción, Paraguay"
+  - family-names: "Barán"
+    given-names: "Benjamín"
+    orcid: "https://orcid.org/0000-0002-2855-7201"
+    affiliation: "Universidad Comunera, Asunción, Paraguay"
+preferred-citation:
+  type: conference-paper
+  title: "How Close to Optimal? Benchmarking a Hybrid Heuristic for Balanced Bipartition with Positional Correspondence Against Exact and Evolutionary Baselines"
+  year: 2026
+  collection-title: "Congreso Argentino de Ciencias de la Computación (CACIC 2026)"
+  authors:
+    - family-names: "Méndez-Garabetti"
+      given-names: "Miguel"
+      orcid: "https://orcid.org/0000-0003-0809-8965"
+    - family-names: "Ruiz-Olazar"
+      given-names: "Margarita"
+      orcid: "https://orcid.org/0000-0002-1917-7696"
+    - family-names: "Ihara"
+      given-names: "Diego"
+      orcid: "https://orcid.org/0000-0002-8468-0845"
+    - family-names: "Barán"
+      given-names: "Benjamín"
+      orcid: "https://orcid.org/0000-0002-2855-7201"
