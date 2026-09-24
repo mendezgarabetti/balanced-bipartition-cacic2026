@@ -28,13 +28,13 @@
 
 ## Proposed vs GA -- Mann-Whitney U (two-sided)
 
-| Dataset | Mode | n_Proposed | n_GA | Proposed_mean | GA_mean | U_stat | p_value | Significant_at_0.05 | Proposed_better |
-|---|---|---|---|---|---|---|---|---|---|
-| HCV | full | 30 | 30 | 1840 | 4307 | 0 | 1.691e-17 | True | True |
-| HCV | sub300 | 10 | 5 | 1030 | 1881 | 0 | 0.000666 | True | True |
-| Iris | full | 30 | 10 | 1.011 | 6.237 | 0 | 2.359e-09 | True | True |
-| Synthetic | full | 30 | 30 | 1.765 | 77.42 | 0 | 1.691e-17 | True | True |
-| Synthetic | sub300 | 10 | 5 | 0.4753 | 12.18 | 0 | 0.000666 | True | True |
+| Dataset | Mode | n_Proposed | n_GA | Proposed_mean | GA_mean | U_stat | p_value | Significant_at_0.05 | Proposed_better | Design | Preferred_test |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| HCV | full | 30 | 30 | 1840 | 4307 | 0 | 1.691e-17 | True | True | independent samples | this Mann-Whitney U |
+| HCV | sub300 | 10 | 5 | 1030 | 1881 | 0 | 0.000666 | True | True | partially matched instances | paired Wilcoxon on shared seeds (see effect_sizes.csv) |
+| Iris | full | 30 | 10 | 1.011 | 6.237 | 0 | 2.359e-09 | True | True | independent samples | this Mann-Whitney U |
+| Synthetic | full | 30 | 30 | 1.765 | 77.42 | 0 | 1.691e-17 | True | True | independent samples | this Mann-Whitney U |
+| Synthetic | sub300 | 10 | 5 | 0.4753 | 12.18 | 0 | 0.000666 | True | True | partially matched instances | paired Wilcoxon on shared seeds (see effect_sizes.csv) |
 
 
 ## Optimality gap vs Exact (Blossom), % = (Method - Exact)/Exact * 100

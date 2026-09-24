@@ -80,6 +80,12 @@ def mannwhitney_table(proposed, ga):
             continue
         stat, p = mannwhitneyu(prop_grp["W_pos"], ga_grp["W_pos"], alternative="two-sided",
                                 method="exact")
+        # On sub300 the two samples cover overlapping but unequal instance sets,
+        # so this unpaired test mixes instance and algorithmic variability. The
+        # defensible test there is the paired Wilcoxon in effect_sizes.csv, which
+        # does not reach p<0.05. Flag it so a reader of this file alone does not
+        # take the row below as the primary evidence.
+        paired = mode.startswith("sub")
         rows.append({
             "Dataset": ds, "Mode": mode,
             "n_Proposed": len(prop_grp), "n_GA": len(ga_grp),
@@ -87,6 +93,9 @@ def mannwhitney_table(proposed, ga):
             "U_stat": stat, "p_value": p,
             "Significant_at_0.05": p < 0.05,
             "Proposed_better": prop_grp["W_pos"].mean() < ga_grp["W_pos"].mean(),
+            "Design": "partially matched instances" if paired else "independent samples",
+            "Preferred_test": ("paired Wilcoxon on shared seeds (see effect_sizes.csv)"
+                               if paired else "this Mann-Whitney U"),
         })
     return pd.DataFrame(rows)
 

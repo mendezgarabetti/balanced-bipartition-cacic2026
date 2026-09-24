@@ -1,10 +1,23 @@
 {
   "title": "Reproducibility package: How Close to Optimal? Benchmarking a Hybrid Heuristic for Balanced Bipartition with Positional Correspondence Against Exact and Evolutionary Baselines",
   "upload_type": "software",
-  "license": "MIT",
+  "license": "mit",
   "access_right": "open",
   "language": "eng",
-  "description": "<p>Code, data and raw per-run results behind every table and figure in the CACIC 2026 (WASI track) paper on balanced bipartition with positional correspondence.</p><p>For two groups the objective depends only on which pairs are formed, never on which element of a pair is labelled S1 or S2, so the problem reduces exactly to minimum-weight maximum-cardinality matching on the complete graph and can be solved to optimality by Edmonds' Blossom algorithm. This package contains that exact solver, the analysis scripts that produce the significance tests, optimality gaps and effect sizes, the datasets, and the complete experimental protocol.</p><p>The two method implementations written for the companion paper &mdash; Ruiz-Olazar, Ihara, Bar&aacute;n and M&eacute;ndez-Garabetti, <em><a href=\"https://55jaiio.sadio.org.ar/wp-content/uploads/2026/07/389.pdf\">Balanced Bipartition into Homogeneous Groups with Positional Correspondence</a></em>, 55 JAIIO / ASAID 2026 &mdash; are not redistributed here and are available from the authors on request; every number in the paper remains verifiable from the committed raw results, and the exact optima can be recomputed from scratch.</p>",
+  "version": "1.0.0",
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/mendezgarabetti/balanced-bipartition-cacic2026/tree/v1.0.0",
+      "resource_type": "software"
+    },
+    {
+      "relation": "references",
+      "identifier": "https://55jaiio.sadio.org.ar/wp-content/uploads/2026/07/389.pdf",
+      "resource_type": "publication-conferencepaper"
+    }
+  ],
+  "description": "<p>Analysis code, experimental data and the exact baseline behind the tables and figures of the CACIC 2026 (WASI track) paper on balanced bipartition with positional correspondence.</p><p>For two groups the objective depends only on which pairs are formed, never on which element of a pair is labelled S1 or S2, so the problem reduces exactly to minimum-weight maximum-cardinality matching on the complete graph and can be solved to optimality by Edmonds' Blossom algorithm. This package contains that exact solver, the analysis scripts that produce the significance tests, optimality gaps and effect sizes, the datasets, and the experimental protocol.</p><p>Scope: the two method implementations written for the companion paper &mdash; Ruiz-Olazar, Ihara, Bar&aacute;n and M&eacute;ndez-Garabetti, <em><a href=\"https://55jaiio.sadio.org.ar/wp-content/uploads/2026/07/389.pdf\">Balanced Bipartition into Homogeneous Groups with Positional Correspondence</a></em>, 55 JAIIO / ASAID 2026 &mdash; are not redistributed here and are available from the authors on request. This deposit therefore supports reanalysis of the recorded per-run results and recomputation of the exact optimum, but not independent rerunning of all three methods. The cited SIFT and MNIST figures, and the originally published values, are carried as transcribed constants rather than reconstructed from their runs.</p>",
   "creators": [
     {
       "name": "Méndez-Garabetti, Miguel",

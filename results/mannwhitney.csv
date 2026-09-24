@@ -1,6 +1,6 @@
-Dataset,Mode,n_Proposed,n_GA,Proposed_mean,GA_mean,U_stat,p_value,Significant_at_0.05,Proposed_better
-HCV,full,30,30,1840.385004777016,4307.31293732261,0.0,1.691123389214474e-17,True,True
-HCV,sub300,10,5,1030.4729733157092,1881.054685200187,0.0,0.000666000666000666,True,True
-Iris,full,30,10,1.010883279661608,6.237307519922967,0.0,2.3594350968764233e-09,True,True
-Synthetic,full,30,30,1.7652101962766689,77.41779912073079,0.0,1.691123389214474e-17,True,True
-Synthetic,sub300,10,5,0.4752900119063973,12.184824935137835,0.0,0.000666000666000666,True,True
+Dataset,Mode,n_Proposed,n_GA,Proposed_mean,GA_mean,U_stat,p_value,Significant_at_0.05,Proposed_better,Design,Preferred_test
+HCV,full,30,30,1840.385004777016,4307.31293732261,0.0,1.691123389214474e-17,True,True,independent samples,this Mann-Whitney U
+HCV,sub300,10,5,1030.4729733157092,1881.054685200187,0.0,0.000666000666000666,True,True,partially matched instances,paired Wilcoxon on shared seeds (see effect_sizes.csv)
+Iris,full,30,10,1.010883279661608,6.237307519922967,0.0,2.3594350968764233e-09,True,True,independent samples,this Mann-Whitney U
+Synthetic,full,30,30,1.7652101962766689,77.41779912073079,0.0,1.691123389214474e-17,True,True,independent samples,this Mann-Whitney U
+Synthetic,sub300,10,5,0.4752900119063973,12.184824935137835,0.0,0.000666000666000666,True,True,partially matched instances,paired Wilcoxon on shared seeds (see effect_sizes.csv)

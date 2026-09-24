@@ -29,6 +29,23 @@ Note that HCV is standardised rather than min-max scaled. This follows the
 companion JAIIO paper's original loader, so that the numbers here are directly
 comparable to the published ones.
 
+## Odd N: the unmatched element
+
+The objective pairs M = ⌊N/2⌋ elements, so when N is odd one element is left
+out and contributes nothing. Among the datasets used here this affects **HCV
+only** (N=589): the matching covers 294 pairs and excludes one point. All three
+methods use the same ⌊N/2⌋ convention, so their W_pos values remain directly
+comparable, but they do *not* choose the excluded element the same way:
+
+- the exact solver selects it jointly while optimising;
+- the GA lets it vary, through mutation and its per-individual 2M-of-N sampling;
+- *Proposed* fixes it once during construction and never revisits it.
+
+This asymmetry is a limitation of the heuristic rather than a flaw in the
+comparison, and it may contribute to HCV's gap; that is untested. Note that
+because the *Proposed* and GA implementations are not redistributed here, this
+equivalence cannot be fully audited from this repository alone.
+
 ## Subsampling
 
 Sub-instances of N=300 are drawn by `common.subsample()`, which is
@@ -59,6 +76,15 @@ bipartite assumption is needed.
 Each solve is a single deterministic run; repetitions would be meaningless on
 a fixed point set. Solved: full Iris, full Synthetic 2D, full HCV, and the ten
 N=300 subsamples of Synthetic 2D and HCV.
+
+**What the reported times cover.** Exact-solver timings are the matching
+routine only: the clock starts after the complete graph and its edge weights
+have been built. *Proposed* and GA timings cover their optimizer calls. Graph
+construction is O(N²) against an O(N³) solve, so its share shrinks as N grows,
+and it is small at every scale reported here: 4.7% of the total for Iris
+(N=150), 0.9% for HCV (N=589), 0.5% for Synthetic 2D (N=1000). It does not
+change any reported figure, but the speed ratios against *Proposed* are
+matching-routine comparisons, not end-to-end ones.
 
 Tractability under networkx 3.6.1 (see the README: the version matters):
 
@@ -120,6 +146,18 @@ greedy constructive phase, and no pre-refactor copy was under version control.
 - **Wilcoxon signed-rank**, paired, on the five sub300 seeds shared between
   *Proposed* and the GA. This is a matched-pairs design with its own
   assumptions, not a weaker-assumption substitute for Mann–Whitney.
+
+> **Reading `mannwhitney.csv` on sub300.** That file reports the unpaired
+> Mann–Whitney for every configuration, and marks the two sub300 rows
+> `Significant_at_0.05 = True`. Do not read those two rows as the primary
+> evidence: at that scale the samples cover overlapping but unequal instance
+> sets, so the unpaired test mixes instance and algorithmic variability. The
+> defensible test is the paired Wilcoxon on the five shared seeds, which gives
+> **p = 0.0625** for both datasets and therefore does *not* reach p < 0.05. The
+> `Design` and `Preferred_test` columns in `mannwhitney.csv` carry this
+> caveat, and the paired result is in `effect_sizes.csv`. The full-scale rows
+> are unaffected: there the samples are independent and the test is the right
+> one.
 - Standard deviations use `ddof=1` throughout.
 - Optimality gap is
   `(mean_W_method - W_exact) / W_exact * 100`, the same definition for every

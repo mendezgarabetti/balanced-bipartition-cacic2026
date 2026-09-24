@@ -21,7 +21,14 @@ from common import (
 
 def solve_exact_matching(X):
     """Build complete graph (weight = squared euclidean dist) and solve
-    min-weight matching with Blossom (networkx). Returns (tuples, W_pos, solve_time_s)."""
+    min-weight matching with Blossom (networkx). Returns (tuples, W_pos, solve_time_s).
+
+    The reported time covers the matching routine only; building the graph and
+    computing its edge weights happens before the clock starts. Construction is
+    O(N^2) against an O(N^3) solve, so its share falls as N grows: measured at
+    4.7% of the total for Iris (N=150), 0.9% for HCV (N=589) and 0.5% for
+    Synthetic 2D (N=1000). Heuristic and GA timings cover their optimizer calls.
+    """
     N = len(X)
     G = nx.Graph()
     G.add_nodes_from(range(N))
