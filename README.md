@@ -13,10 +13,13 @@ an explicit one-to-one alignment between them, minimising
 
 $$W_{pos} = \sum_{i=1}^{M} \lVert S_1[i] - S_2[i] \rVert^2, \qquad M = \lfloor N/2 \rfloor .$$
 
-The companion paper (55 JAIIO / ASAID 2026) introduced a hybrid heuristic for
-this problem (KD-Tree greedy initialisation plus swap-based local search) but
-left two questions open: how it compares against a real metaheuristic, and how
-far its solutions are from the true optimum.
+The companion paper — Ruiz-Olazar, Ihara, Barán and Méndez-Garabetti,
+[*Balanced Bipartition into Homogeneous Groups with Positional
+Correspondence*](https://55jaiio.sadio.org.ar/wp-content/uploads/2026/07/389.pdf),
+55 JAIIO / ASAID 2026 — introduced a hybrid heuristic for this problem (KD-Tree
+greedy initialisation plus swap-based local search) but left two questions open:
+how it compares against a real metaheuristic, and how far its solutions are from
+the true optimum.
 
 This repository contains the experiments that close both. The key observation
 is that for two groups the objective depends only on *which pairs are formed*,
@@ -49,8 +52,9 @@ why, and which numbers in the paper are newly generated as opposed to cited.
 ### Method implementations
 
 The two method implementations, `hibrido_c2.py` (*Proposed*) and `ga_c2.py`
-(GA baseline), were written for the companion JAIIO paper and are **not
-redistributed here**; they are available from the authors on request. The
+(GA baseline), were written for the [companion JAIIO
+paper](https://55jaiio.sadio.org.ar/wp-content/uploads/2026/07/389.pdf) and are
+**not redistributed here**; they are available from the authors on request. The
 exact solver, which is this paper's own contribution, is included.
 
 This does not limit verification. Every number in every table and figure can

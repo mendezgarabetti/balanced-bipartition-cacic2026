@@ -4,6 +4,11 @@ Everything needed to interpret the files in this directory: how each dataset is
 prepared, how each method was configured, which seeds were used, and which
 numbers in the paper are newly generated as opposed to cited.
 
+The companion paper referred to throughout is Ruiz-Olazar, Ihara, Barán and
+Méndez-Garabetti, [*Balanced Bipartition into Homogeneous Groups with Positional
+Correspondence*](https://55jaiio.sadio.org.ar/wp-content/uploads/2026/07/389.pdf),
+55 JAIIO / ASAID 2026.
+
 ## Datasets
 
 | dataset | N | D | preprocessing |
