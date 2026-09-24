@@ -1,20 +1,10 @@
-"""
-Extra GA baseline repetitions for Synthetic/full and HCV/full, added
-2026-09-16 to bring the Mann-Whitney U test vs. "Proposed" (n=30) off its
-combinatorial floor. See PROTOCOL.md, section "Follow-up: extra GA repetitions
-(2026-09-16)" for the full rationale.
+"""Additional GA repetitions for Synthetic/full and HCV/full, extending those
+configurations from 3 to 30 runs so the Mann-Whitney test leaves its
+combinatorial floor.
 
-This is a NEW script -- it does NOT modify run_ga_baseline.py, common.py,
-or any existing raw_ga_*.csv. It reuses the exact same GA invocation
-(run_ga_c2, GENERATIONS=1000, POP_SIZE=100) and the exact same FULL_SEEDS
-convention (range(42, 72)) as run_ga_baseline.py, but targets NEW seeds
-(45..71, continuing after the 3 already-used seeds 42-44) and writes to
-SEPARATE "_extra" CSV files so the original 3-repetition files
-(raw_ga_Synthetic_full.csv, raw_ga_HCV_full.csv) are preserved byte-for-byte
-as a record of the original CACIC submission run.
-
-Runs (dataset, seed) tasks in parallel via ProcessPoolExecutor (one process
-per core) since run_ga_c2 is a pure-Python/NumPy single-threaded routine.
+Same GA invocation and seed convention as run_ga_baseline.py, but on new seeds
+and writing to separate "_extra" CSVs, leaving the original files untouched.
+Runs tasks in parallel, one process per core.
 
 Usage:
     python3 run_ga_baseline_extra.py --seed-start 45 --seed-end 71 --workers 28

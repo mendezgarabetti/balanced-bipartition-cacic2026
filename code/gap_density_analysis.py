@@ -1,18 +1,11 @@
-"""
-Investigates WHETHER local point-cloud density explains the optimality-gap
-variance observed on the N=300 subsamples (Synthetic 2D, HCV), addressing a
-reviewer question: is Proposed's large *relative* gap on some instances a
-real geometric effect, or just an artifact of dividing by a very small
-W_exact?
+"""Tests whether local point-cloud density explains the optimality-gap variance on
+the N=300 subsamples, i.e. whether Proposed's large relative gap on some
+instances is a geometric effect rather than an artifact of dividing by a small
+W_exact.
 
-Does NOT re-run any optimizer: reuses the exact same subsample() seeds
-(42..51) already used for the Exact/Proposed/GA comparison, recomputing
-only a cheap, independent geometric statistic (mean nearest-neighbor
-distance) on each already-fixed point set, and joins it with the raw
-per-seed W_pos values already saved in results/raw_exact.csv and
-results/raw_proposed_matched.csv.
-
-Read-only reuse: common.py (subsample, dataset loaders) -- not edited.
+Re-runs no optimizer: recomputes a cheap geometric statistic (mean
+nearest-neighbour distance) on the same seeded point sets and joins it with the
+committed raw per-seed results.
 """
 import os
 import numpy as np

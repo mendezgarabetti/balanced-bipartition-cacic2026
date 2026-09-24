@@ -1,22 +1,10 @@
-"""
-GA baseline runner. Requires run_ga_c2 from ga_c2.py, which this repository
-does not redistribute (see the README).
+"""GA baseline runner. Needs run_ga_c2 from ga_c2.py, which this repository does
+not redistribute (see the README).
 
-Cost per generation, measured over 20 generations:
-    Iris-full   (N=150,D=4) : ~92 ms/gen  -> 8000 gens ~= 735s/run
-    Synth-full  (N=1000,D=2): ~594 ms/gen -> 8000 gens ~= 4750s/run
-    HCV-full    (N=589,D=12): ~353 ms/gen -> 8000 gens ~= 2822s/run
-    sub300 (D=2 or D=12)    : ~180 ms/gen -> 8000 gens ~= 1450s/run
-
-At those rates the reference 8000-generation protocol is not tractable for
-the repetition counts needed across all five configurations, so generations
-are reduced to 1000 throughout and repetition counts are set per
-configuration according to cost. Both reductions are stated in the paper and
-documented in PROTOCOL.md.
-
-This script is invoked once per (dataset, mode) configuration, so the
-configurations can run as independent parallel processes. Each invocation
-writes its own CSV; --combine merges them.
+Generations are reduced from the reference 8000 to 1000, and repetition counts
+are set per configuration according to cost; see results/PROTOCOL.md. One
+invocation per (dataset, mode) so configurations can run in parallel, each
+writing its own CSV; --combine merges them.
 
 Usage:
     python3 run_ga_baseline.py --dataset Iris --mode full --reps 10

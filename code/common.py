@@ -1,14 +1,7 @@
-"""
-Shared utilities for CACIC 2026 experiments.
-
-Dataset loaders, the shared deterministic subsampling utility, and lazy
-accessors for the two method implementations that this repository does not
-redistribute (hybrid_optimizer_c2 and run_ga_c2; see the README).
-
-The dataset-loading logic below reproduces the companion JAIIO paper's original
-loader exactly (same normalization, same feature selection, same make_blobs
-parameters), so the numbers here are directly comparable to the published
-JAIIO ones. See results/PROTOCOL.md for the full experimental protocol.
+"""Dataset loaders, the shared seeded subsampling utility, and lazy accessors for
+the two method implementations this repository does not redistribute (see the
+README). Loading reproduces the companion paper's original preprocessing, so the
+numbers here are comparable to the published ones. See results/PROTOCOL.md.
 """
 import importlib
 import os
@@ -23,7 +16,6 @@ CODE_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(CODE_DIR)
 DATA_DIR = os.path.join(REPO_ROOT, "data")
 RESULTS_DIR = os.path.join(REPO_ROOT, "results")
-PAPER_DIR = os.path.join(REPO_ROOT, "paper")
 
 sys.path.insert(0, CODE_DIR)
 
@@ -31,8 +23,8 @@ sys.path.insert(0, CODE_DIR)
 def normalizar_minmax(X):
     """Per-column min-max scaling to [0, 1], constant columns left unscaled.
 
-    Identical to the companion paper's implementation; reproduced here so the
-    dataset loaders do not depend on a module this repository does not ship.
+    Reproduced from the companion paper so the loaders below do not depend on a
+    module this repository does not ship.
     """
     X_min = X.min(axis=0)
     X_max = X.max(axis=0)
@@ -41,12 +33,7 @@ def normalizar_minmax(X):
     return (X - X_min) / rng
 
 
-# The two method implementations, hibrido_c2.py (Proposed) and ga_c2.py (GA
-# baseline), belong to the companion JAIIO paper and are not redistributed
-# here; see the README. They are imported lazily so that everything which does
-# not need them -- the exact solver, and every analysis script that verifies
-# the paper's numbers from the committed raw results -- keeps working without
-# them.
+# Imported lazily, so that everything not needing them still works.
 _METHOD_SOURCES = {"hybrid_optimizer_c2": "hibrido_c2", "run_ga_c2": "ga_c2"}
 
 
@@ -58,12 +45,9 @@ def __getattr__(name):
         return getattr(importlib.import_module(module), name)
     except ImportError:
         raise ImportError(
-            f"{name}() lives in {module}.py, which is not redistributed in this "
-            f"repository (see README, 'Method implementations'). Every number in "
-            f"the paper can still be verified from the committed raw results via "
-            f"analyze_results.py and gap_density_analysis.py, and the exact optima "
-            f"recomputed via exact_matching_baseline.py; only re-running the "
-            f"methods themselves needs {module}.py."
+            f"{name}() lives in {module}.py, which this repository does not "
+            f"redistribute (see README, 'Method implementations'). The paper's "
+            f"numbers can still be verified from the committed raw results."
         ) from None
 
 IRIS_CSV = os.path.join(DATA_DIR, "iris_dataset.csv")
@@ -102,10 +86,8 @@ DATASET_LOADERS = {
 
 # ─── Subsampling utility (shared by exact / GA / proposed on sub-instances) ─
 def subsample(X, n_sub, seed):
-    """Deterministic subsample of n_sub rows from X given a seed.
-    Using this SAME function everywhere guarantees Exact / GA / Proposed
-    are evaluated on the identical point set for a given (dataset, seed).
-    """
+    """Deterministic subsample of n_sub rows. Used by all three methods, so a
+    given (dataset, seed) yields the identical point set for each."""
     rng = np.random.default_rng(seed)
     n = len(X)
     if n_sub >= n:
@@ -115,10 +97,7 @@ def subsample(X, n_sub, seed):
     return X[idx], idx
 
 
-# Tractable subsample size for the exact (Blossom) solver, chosen empirically
-# (see PROTOCOL.md): under networkx 3.6.1, N=300 solves in ~5s with the
-# pure-Python min_weight_matching and N=500 in ~24s; scaling is ~O(N^3).
-# (The original ~19s/~90s figures were measured under networkx 3.4.2.)
+# Chosen empirically: ~5s per exact solve under networkx 3.6.1, scaling ~O(N^3).
 EXACT_SUBSAMPLE_N = 300
 EXACT_SUB_SEEDS = list(range(42, 52))  # 10 repetitions, seeds 42..51
 

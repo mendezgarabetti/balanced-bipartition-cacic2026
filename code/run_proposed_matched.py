@@ -1,13 +1,8 @@
-"""
-Runs the existing JAIIO "Proposed" heuristic (hybrid_optimizer_c2 from the
-read-only hibrido_c2.py) with matched seeds so we have paired raw data for:
-  (1) Proposed vs GA on the full-size datasets (Iris, Synthetic 2D, HCV) --
-      mirrors the JAIIO protocol (S=10000 swap iters, seeds 42+i).
-  (2) Proposed vs Exact on the N=300 subsamples of Synthetic/HCV (+ full
-      Iris) used by exact_matching_baseline.py -- for optimality-gap stats.
+"""Regenerates the Proposed heuristic's per-run results under seeds matched to the
+GA and exact baselines, so the comparisons are paired. Needs hybrid_optimizer_c2
+from hibrido_c2.py, which this repository does not redistribute (see the README).
 
-SIFT and MNIST are NOT rerun here: we cite the JAIIO published numbers
-directly for those two datasets (see PROTOCOL.md / analyze_results.py).
+SIFT and MNIST are cited from the companion paper, not rerun.
 """
 import os
 import time

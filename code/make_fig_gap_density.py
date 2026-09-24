@@ -8,7 +8,7 @@ import os
 
 _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RESULTS = os.path.join(_REPO_ROOT, "results")
-OUT = os.path.join(_REPO_ROOT, "paper", "fig_gap_density.pdf")
+OUT = os.path.join(RESULTS, "fig_gap_density.pdf")
 
 df = pd.read_csv(f"{RESULTS}/gap_density_instances.csv")
 

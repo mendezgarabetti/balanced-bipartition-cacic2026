@@ -33,8 +33,7 @@ That gives a true optimum to measure against.
 ```
 code/      experiment and analysis scripts
 data/      the two real datasets (Iris, HCV); Synthetic 2D is generated
-results/   raw per-run results, derived statistics, and the protocol
-paper/     the gap-vs-density figure
+results/   raw per-run results, derived statistics, the figure, and the protocol
 ```
 
 `results/PROTOCOL.md` documents how each dataset is prepared, how each method

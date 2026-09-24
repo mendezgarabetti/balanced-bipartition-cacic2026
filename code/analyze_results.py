@@ -1,13 +1,11 @@
-"""
-Aggregates raw_exact.csv, raw_proposed_matched.csv, raw_ga_combined.csv into:
-  - results/summary_wpos_time.csv / .md   : mean+-std W_pos and time per (Dataset,Mode,Method)
-  - results/mannwhitney.csv               : Proposed vs GA, two-sided Mann-Whitney U
-  - results/optimality_gap.csv            : (Method - Exact)/Exact * 100, paired by seed
-                                             where possible (sub300) or vs the single
-                                             deterministic exact value (Iris full).
-  - results/summary_full.md               : human-readable combined report, includes
-                                             the cited JAIIO-published SIFT/MNIST numbers
-                                             (not rerun -- see PROTOCOL.md).
+"""Aggregates the raw per-run CSVs into the paper's derived results:
+
+  summary_wpos_time.csv / summary_full.md  mean+-std W_pos and time per method
+  mannwhitney.csv                          Proposed vs GA, two-sided exact test
+  optimality_gap.csv                       gap against the exact optimum
+  effect_sizes.csv                         Vargha-Delaney A, paired Wilcoxon
+
+SIFT and MNIST are cited from the companion paper, not rerun.
 """
 import os
 import numpy as np
